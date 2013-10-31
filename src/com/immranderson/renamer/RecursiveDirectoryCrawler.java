@@ -6,9 +6,7 @@ import java.io.FileNotFoundException;
 public class RecursiveDirectoryCrawler
 	{
 
-		static int i = 0;
-
-		public static void CrawlGenerate(File topdirectory) throws FileNotFoundException
+		public static void RecursivelyRename(File topdirectory, String fromText, String toText) throws FileNotFoundException
 		{
 
 			for (File file : topdirectory.listFiles())
@@ -17,28 +15,13 @@ public class RecursiveDirectoryCrawler
 				if (file.isDirectory())
 				{
 					System.out.println(file.getAbsolutePath()); // prints out all directories
-					rename(file, "Nan", "Tom");
-					CrawlGenerate(file);
+					rename(file, fromText, toText);
+					RecursivelyRename(file, fromText, toText);
 				}					
 					System.out.println(file.getAbsolutePath()); // prints out all files	
-					rename(file, "Nan", "Tom");
+					rename(file, fromText, toText);
 			}
 		}
-		
-//		public static void CrawlSearch(File topdirectory) {
-//
-//			for (File file : topdirectory.listFiles())
-//			{
-//					System.out.println(file.getAbsolutePath()); // prints out all files
-//
-//				if (file.isDirectory())
-//				{
-//					System.out.println(file.getAbsolutePath()); // prints out all directories
-//					CrawlSearch(file);
-//				}
-//			}
-//
-//		}
 
 		public static void rename(File file, String fromText, String toText) {			
 			File renamedFile = new File(file.getAbsolutePath().replace(fromText, toText));			
@@ -55,7 +38,7 @@ public class RecursiveDirectoryCrawler
 
 			DirectoryOpener directoryOpener = new DirectoryOpener();
 			File topdirectory = new File (directoryOpener.getName());
-			CrawlGenerate(topdirectory);
+			RecursivelyRename(topdirectory, "Tom", "Nan");
 
 		}
 

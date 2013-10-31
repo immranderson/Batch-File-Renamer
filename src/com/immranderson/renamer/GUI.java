@@ -4,6 +4,8 @@ import java.awt.Container;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.FileNotFoundException;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -59,6 +61,7 @@ public class GUI extends JFrame
 			previousTextTF = new JTextField();
 			replacementTextTF = new JTextField();
 			directoryTF = new JTextField();
+			directoryTF.setEditable(false);
 			
 			previousTextLabel = new JLabel("Previous Text");
 			replacementTextLabel = new JLabel("Replacement Text");
@@ -101,7 +104,15 @@ public class GUI extends JFrame
 			{
 				// TODO Auto-generated method stub
 				System.out.println("Run Button Pressed");
-				
+				try
+					{
+						RecursiveDirectoryCrawler.RecursivelyRename(new File(directoryOpener.getName()), previousTextTF.getText(), replacementTextTF.getText());
+					}
+				catch (FileNotFoundException e1)
+					{
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
 			}
 
 	}
@@ -114,6 +125,7 @@ public class GUI extends JFrame
 				// TODO Auto-generated method stub
 				System.out.println("Directory Button Pressed");
 				directoryOpener = new DirectoryOpener();
+				directoryTF.setText(directoryOpener.getName());
 				
 				System.out.println(directoryOpener.getName());
 			}
