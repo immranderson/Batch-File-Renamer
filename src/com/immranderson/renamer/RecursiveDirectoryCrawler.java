@@ -17,29 +17,38 @@ public class RecursiveDirectoryCrawler
 				if (file.isDirectory())
 				{
 					System.out.println(file.getAbsolutePath()); // prints out all directories
+					rename(file, "Nan", "Tom");
 					CrawlGenerate(file);
-				}	
-				
+				}					
 					System.out.println(file.getAbsolutePath()); // prints out all files	
+					rename(file, "Nan", "Tom");
 			}
 		}
 		
-		public static void CrawlSearch(File topdirectory) {
+//		public static void CrawlSearch(File topdirectory) {
+//
+//			for (File file : topdirectory.listFiles())
+//			{
+//					System.out.println(file.getAbsolutePath()); // prints out all files
+//
+//				if (file.isDirectory())
+//				{
+//					System.out.println(file.getAbsolutePath()); // prints out all directories
+//					CrawlSearch(file);
+//				}
+//			}
+//
+//		}
 
-			for (File file : topdirectory.listFiles())
-			{
-					System.out.println(file.getAbsolutePath()); // prints out all files
-
-				if (file.isDirectory())
-				{
-					System.out.println(file.getAbsolutePath()); // prints out all directories
-					CrawlSearch(file);
-				}
+		public static void rename(File file, String fromText, String toText) {			
+			File renamedFile = new File(file.getAbsolutePath().replace(fromText, toText));			
+			
+			if (file.renameTo(renamedFile)) {
+				System.out.println("Rename Success");
+			} else {
+				System.out.println("Rename Failure");
 			}
-
 		}
-
-
 
 		public static void main(String[] args) throws FileNotFoundException {
 			// TODO Auto-generated method stub
